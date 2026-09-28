@@ -37,7 +37,7 @@ router.patch("/updateprofile/:id",async (req,res)=>{
     if(data.password){
         data.password=await bcrypt.hash(data.password,10);
     }
-    let result=await users.findByIdAndUpdate(req.params.id,{$set:data});
+    let result=await users.findByIdAndUpdate(req.params.id,{$set:data},{new:true});
     res.send(result);
 })
 module.exports=router;
