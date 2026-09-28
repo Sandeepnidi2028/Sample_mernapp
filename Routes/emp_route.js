@@ -33,6 +33,11 @@ router.get("/viewtask",(req,res)=>{
     res.send("viewtask router called");
 })
 router.patch("/updateprofile/:id",async (req,res)=>{
-    res.send("update profile router called")
+    let data=req.body;
+    if(data.password){
+        data.password=await bcrypt.hash(data.password,10);
+    }
+    let result=await users.findByIdAndUpdate(req.params.id,{$set:data});
+    res.send(result);
 })
 module.exports=router;
