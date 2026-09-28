@@ -3,9 +3,9 @@ let userSchema=mongoose.Schema({
     name: String,
     email:{type: String, unique: true},
     password: String
-    role: {                                                                               
+    role:{                                                                               
         type: String,
-        enum: ['hr','employee'],
+        enum: ['HR','EMPLOYEE'],
         
     }
-});ee'
+});
