@@ -27,8 +27,14 @@ let taskSchema=mongoose.Schema({
         enum:["pending","inprogress","completed"],
         default:"pending"
     },
-    timestamps:true
     
-})
+    
+
+
+},
+{timestamps:true}
+
+
+)
 const task=mongoose.model('tasks',taskSchema);
 module.exports={task}
