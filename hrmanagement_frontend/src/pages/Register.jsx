@@ -3,14 +3,37 @@ import { useState } from "react";
 function Register()
  {
   let [name, setName] = useState("");
-  let [email, setEmail] = useState("");
+  let [emailid, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [role, setRole] = useState("");
 
+  let handleRegister =async (event) => {
+    event.preventDefault();
+    let res = await fetch("http://localhost:3000/api/emp/register", 
+      {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, emailid, password, role })
+    })
+       let data = await res.json()
+
+        if (res) {
+            console.log("data inserted success");
+            console.log(data);
+        } else {
+            console.log("data insertion failed")
+            console.log(data)
+
+        }
+    
+    
+  }
   return (
     <div>
       <h1>Register Page</h1>
-      <form>
+      <form onSubmit={handleRegister}>
         <input type="text"
 
         onChange={(e) => setName(e.target.value)} 
@@ -18,7 +41,7 @@ function Register()
         placeholder="Enter name" /><br />
                 <input type="email" 
                 onChange={(e) => setEmail(e.target.value)} 
-                value={email} 
+                value={emailid} 
                 placeholder="Enter Email" /><br />
                 <input type="password" 
                 onChange={(e) => setPassword(e.target.value)} 
